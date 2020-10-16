@@ -1,0 +1,73 @@
+.delivery {
+    .request-receipt {
+        @include radius(8px);
+        padding: 10px;
+        overflow:hidden;
+        h5 {
+            margin-top:12px
+        }
+    }
+    .send-request {
+        background-color:#fff;
+        padding:10px;
+        @include radius(8px);
+        @include shadow($shadow3);
+        select {
+            width:calc(50% - 100px);
+            margin-left:10px;
+        }
+        button {
+            height:55px;
+        }
+    }
+}
+
+.form-table {
+    .table-wrapper{
+        overflow-x: scroll;
+        table {
+            min-width:1000px;
+            th,td {
+                min-width:100px;
+                white-space: nowrap;
+                &:first-of-type {
+                    min-width:20px;
+                }
+            }
+        }
+    }
+}
+
+.send-daily-forms {
+    table {
+        th,td {
+            &:last-of-type{
+                width:200px;
+            }
+        }
+    }
+}
+.layer-upload-file {
+    right:0;
+    top:0;
+    background:rgba(0,0,0,0.8);
+    height:100vh;
+    width:100%;
+    z-index:20;
+    &>div {
+        height:100vh;
+        .uploading {
+            @include radius(10px);
+            .close-upload {
+                right:-10px;
+                top:-10px;
+                @include radius(50%);
+                width:45px;
+                height:45px;
+                line-height: 47px;
+                font-size:20px;
+                cursor: pointer;
+            }
+        }
+    }
+}

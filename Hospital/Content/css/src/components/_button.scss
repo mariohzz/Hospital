@@ -1,0 +1,24 @@
+.btn {
+    height:50px;
+    &:focus {
+        box-shadow:none!important;
+    }
+}
+
+
+.btn-primary {
+    background-color:$mainColor;
+    border-color:$mainColor;
+    &:hover {
+        background-color: #0c64b7;
+        border-color: #0c64b7;
+    }
+}
+.btn-success {
+    background-color:$greenColor;
+    border-color:$greenColor;
+    &:hover {
+        background-color: #07bb80;
+        border-color: #07bb80;
+    }   
+}

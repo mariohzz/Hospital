@@ -1,0 +1,169 @@
+header#header{
+    background-color:#fff;
+    font-family: $font2;
+    position: relative;
+    @include transition(transform 0.3s ease);
+    @include shadow(1px 2px 18px -4px #2323231c);
+    #logo {
+        width:80px;
+        padding:6px;
+        @media(max-width:580px) {
+            width:55px
+        }
+    }
+    .btn {
+        font-size:11px;
+        height:auto;
+        &.btn-yel.join-us,
+        &.btn-second.login {
+            left:15px;
+            top:0;
+            height:100%;
+            width:100px;
+            line-height: 72px;
+            font-size: 17px;
+            @media(max-width:580px) {
+                width:55px;
+                width: 76px;
+                line-height: 48px;
+                font-size: 13px;
+            }
+        }
+        &.btn-second.login {
+            left:115px;
+            background-color:transparent;  
+            @media(max-width:580px) {
+                left:90px;
+            }
+        }
+    }
+    .head-links {
+        li {
+            font-size:14px;
+            &.btn-menu {
+                svg {
+                    font-size:23px;
+                }
+                &:focus {
+                    box-shadow:0!important;
+                    outline:0!important;
+                }
+            }
+            &:hover {
+                ul.head-drop-down{
+                    display: block;
+                    animation: move 0.1s ease 0s 1 normal forwards running;
+                }
+            }
+            &.link-item {
+                >a {
+                    &:hover {
+                        color:#ddd;   
+                    }
+                    margin-right:30px;
+                }
+            }
+        }
+    }
+    .head-drop-down{
+        right:0;
+        width:153px;
+        top:17px;
+        background-color:#f3f1f1;
+        display:none;
+        z-index:5;
+        @include transform(translateY(20px));
+        @include radius(4px);
+        li{
+            a {
+                color:#1d152a73;
+                display:block;
+                padding:0.8rem 1rem;
+                border-bottom:1px solid #ddd;
+                &:hover {
+                    background-color:#ddd;
+                }
+            }
+            &:last-of-type {
+               a {
+                border:none;
+               }
+            }
+        }
+    }
+
+    &.profile {
+        #toggle-menu {
+            color:$mainColor;
+            display:none;
+            @media(max-width:1200px) {
+                display:block;
+            }
+        }
+        .alerts {
+            left:0;
+            height:100%;
+            top:5px;
+            svg {
+                font-size:25px;
+                color:$mainColor;
+                @media(max-width:480px) {
+                    font-size:20px;
+                }
+            }
+            .noti-num  {
+                right: -10px;
+                top: -9px;
+                background-color:#f75968;
+                width:21px;
+                height:21px;
+                line-height:25px;
+                text-align:center;
+                @include radius(5px);
+                font-size:12px;
+            }
+            .messages {
+                @media(max-width:480px) {
+                    top:1px;
+                }
+            }
+            .dropdown {
+                top: -4px;
+                button {
+                    height:auto!important;
+                }
+                .dropdown-menu {
+                    background-color:#ffffff;
+                    padding:0!important;
+                    .dropdown-item {
+                        padding:0.8rem 0.4rem;
+                        font-size:15px;
+                        @include shadow(1px 1px 4px -1px #e0dede);
+                        &:hover {
+                            background-color:#f7f7f7;
+                        }
+                    }
+                }
+                @media(max-width:480px) {
+                    top:0px;
+                }
+            }
+            .dropdown-toggle::after {
+                display:none;
+            }
+        }
+        .user-hint {
+            .btn-yel {
+                font-size:16px;
+            }
+        }
+    }
+}
+@keyframes move{
+    from {
+        @include transform(translateY(20px));
+     }
+     to {
+         @include transform(translateY(0px));
+     }
+}

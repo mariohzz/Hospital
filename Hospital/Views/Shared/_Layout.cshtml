@@ -1,0 +1,166 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Cpanel</title>
+
+    <!--google fonts (Tajawal font)-->
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri&family=Tajawal&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="~/Content/lib/fontawesome/all.min.css" rel="stylesheet" />
+    <!-- Bootstrap  -->
+    <link href="~/Content/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap  -->
+    <link href="~/Content/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Main css  -->
+    <link href="~/Content/css/css/admin/admin.css" rel="stylesheet" />
+</head>
+<body dir="rtl" class="text-right">
+    <!---========= Start aside =========-->
+    <aside id="aside" class="position-fixed text-center pt-3">
+        <a href="#" class="d-inline-block logo ">
+            <img src="~/Content/images/public/logo.jpg" alt="logo" title='logo' class="w-100">
+        </a>
+        <!--start links -->
+        <ul class="links text-right position-relative  mt-4">
+            <li class="position-absolute rounded-1 close-aside  btn">
+                <i class='fas fa-times align-middle'></i>
+            </li>
+
+            <li>
+                <a href='~/Home' class="d-block"><i class='fas fa-home'></i>   الرئيسية</a>
+            </li>
+            <li>
+                <a href='~/Home/About' class="d-block"><i class="fas fa-users"></i> الموظفين</a>
+            </li>
+            <li>
+                <a href='#' class="d-block"><i class="fas fa-user-tie"></i> المشرفين</a>
+            </li>
+            <li>
+                <a href='#' class="d-block"><i class="fas fa-tools"></i> انظمة الأمن</a>
+            </li>
+            <li>
+                <a href='#' class="d-block"><i class='fas fa-file'></i> النماذج اليومية</a>
+            </li>
+            <li>
+                <a href='#' class="d-block"><i class='fas fa-search'></i> الفوحصات الشهرية</a>
+            </li>
+            <li>
+                <a href='#' class="d-block"><i class="fas fa-cog"></i> اعداد</a>
+            </li>
+            <li>
+                <a href='~/Account/Register' class="d-block"><i class="fas fa-plus text-success"></i> مستخدم جديد</a>
+            </li>
+        </ul>
+
+        <!--End links -->
+    </aside>
+    <!---========= End  aside =========-->
+
+    <main>
+        <!--====== Start header ======== -->
+        <header id="header" class="position-relative profile">
+            <div class="container">
+                <div class="row m-0 ">
+                    <div class="col-lg-8 col-6 text-right p-0">
+
+                        <ul class='list-unstyled head-links'>
+                            <li class="d-inline-block btn-menu">
+                                <button class='btn' id='toggle-menu'><i class="fas fa-bars align-middle"></i></button>
+                            </li>
+                            <li class="d-inline-block">
+                                <a href='#' id='logo' class="d-inline-block">
+                                    <img src="~/Content/images/public/logo.jpg" alt="logo" title='logo' class="w-100">
+
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-6 text-left p-0">
+
+                        <!--start alerts -->
+                        <div class="alerts position-absolute d-flex justify-content-center align-items-center">
+                            <div class="wrapper">
+
+                                <!--setting -->
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn p-0  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                    <div class="dropdown-menu  p-0 text-center" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">الصفحة الشخصية</a>
+                                        <a class="dropdown-item" href="#">اعدادتي</a>
+
+
+                                    </div>
+                                </div>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li>
+                                                @Html.ActionLink("Hello" + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                            </li>
+                                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                        </ul>
+                                    }
+                                }
+                                else
+                                {
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                    </ul>
+                                }
+
+                                <!--message -->
+                                <a href='#' class="d-inline-block  messages position-relative mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                    <div class="noti-num position-absolute">0</div>
+                                </a>
+
+                                <!--notification -->
+                                <div class="dropdown d-inline-block position-relative mr-4 ml-2 ml-sm-0">
+                                    <div class="noti-num position-absolute text-white">0</div>
+                                    <button class="btn p-0  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-bell"></i>
+                                    </button>
+                                    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--====== End header ===========-->
+    </main>
+
+    @RenderBody()
+    <!-- jquery-->
+    <script src="~/Content/lib/jquery-3.4.1.min.js"></script>
+    <!--popper-->
+    <script src="~/Content/lib/bootstrap/js/popper.min.js"></script>
+    <!--bootstrap -->
+    <script src="~/Content/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!--FontAwesome -->
+    <script src="~/Content/lib/fontawesome/all.min.js"></script>
+    <!--Nice scroll -->
+    <script src="~/Content/lib/jquery.nicescroll.min.js"></script>
+    <!--Public js  -->
+    <script src="~/Content/js/public.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,57 @@
+// prefixes
+@mixin prefix($prop, $val, $prefixes:()) {
+    @each $prefixer in $prefixes{
+        #{'-'+$prefixer+'-'$prop}: $val;
+    }
+    #{$prop}: $val;
+}
+
+
+// border radius
+@mixin radius($val) {
+    -webkit-border-radius:$val;
+    -moz-border-radius:$val;
+    -o-border-radius:$val;
+    border-radius:$val;
+}
+
+
+// border radius
+@mixin shadow($val) {
+    -webkit-box-shadow:$val;
+    -moz-box-shadow:$val;
+    -o-box-shadow:$val;
+    box-shadow:$val;
+}
+
+
+
+//Transtions
+@mixin transition($val) {
+    -webkit-transition:$val;
+    -moz-transition:$val;
+    -o-transition:$val;
+    transition:$val;
+}
+
+
+//layer
+@mixin layer($color, $r, $l, $t, $b) {
+    position:absolute;
+    right:$r;
+    left:$l;
+    top:$t;
+    bottom:$b;
+    background-color:$color;   
+}
+
+
+
+//transform
+@mixin transform($val) {
+    -webkit-transform:$val;
+    -moz-transform:$val;
+    -o-transform:$val;
+    transform:$val;  
+}
+

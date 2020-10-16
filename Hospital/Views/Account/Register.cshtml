@@ -1,0 +1,48 @@
+﻿@model Hospital.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title</h2>
+<section id="page-content" class="new-user">
+    <div class="container">
+        <div class="breadcrumb p-3 mt-3">
+            <i class="fas fa-plus text-success ml-2 align-middle mt-1"></i>
+            <span>مستخدم جديد</span>
+        </div>
+        @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <form class="bg-white my-3">
+                <!--form group -->
+                <div class="form-group">
+                    <label>نوع المستخدم</label>
+                    @Html.DropDownListFor(m => m.RoleName, new SelectList(ViewBag.Roles, "value", "Text"), htmlAttributes: new { @class = "custom-select mb-3 " })
+                </div>
+                <!--form group -->
+                <div class="form-group mt-3">
+                    <label>اسم المستخدم</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email", @placeholder = "اسم المستخدم" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+                <!--form group -->
+                <div class="form-group mt-3">
+                    <label>كلمة المرور</label>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "كلمة المرور" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+                <!--form group -->
+                <div class="form-group mt-3">
+                    <label>تكرار كلمة المرور</label>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "تكرار كلمة المرور" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+                <!--form group -->
+                <div class="form-group mt-3">
+                    <input type="submit" class="btn btn-primary form-control" value="Register">
+                </div>
+            </form>
+        }
+    </div>
+</section>
